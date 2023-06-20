@@ -1,0 +1,118 @@
+﻿@page
+@model IndexModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+
+@section content {
+    <div class="mosaic-gallery-container">
+        <div class="mosaic-gallery">
+            <div class="mosaic-gallery-item main-image">
+                <img src="~/images/Parliament1.jpg" alt="Image 1" />
+                <div class="caption">This week in Parliament</div>
+            </div>
+            <div class="mosaic-gallery-item">
+                <img src="~/images/Parliament2.jpg" alt="Image 2" />
+                <div class="caption">How is the Parliament of Samoa structured?</div>
+            </div>
+            <div class="mosaic-gallery-item">
+                <img src="~/images/Parliament3.jpg" alt="Image 3" />
+                <div class="caption">What are the main functions of the Parliament of Samoa?</div>
+            </div>
+            <div class="mosaic-gallery-item">
+                <img src="~/images/Parliament4.jpg" alt="Image 4" />
+                <div class="caption">Can members of the public attend parliamentary sessions?</div>
+            </div>
+        </div>
+
+        <div class="slideshow-container">
+            <div class="slideshow">
+                <div class="slide">
+                    <img src="~/images/Parliament1.jpg" alt="Slideshow Image 1" />
+                    <div class="caption">This week in Parliament</div>
+                </div>
+                <div class="slide">
+                    <img src="~/images/Parliament2.jpg" alt="Slideshow Image 2" />
+                    <div class="caption">How is the Parliament of Samoa structured?</div>
+                </div>
+                <div class="slide">
+                    <img src="~/images/Parliament3.jpg" alt="Slideshow Image 3" />
+                    <div class="caption">What are the main functions of the Parliament of Samoa?</div>
+                </div>
+                <div class="slide">
+                    <img src="~/images/Parliament4.jpg" alt="Slideshow Image 4" />
+                    <div class="caption">Can members of the public attend parliamentary sessions?</div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts {
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            const slides = document.querySelectorAll(".slide");
+            const galleryItems = document.querySelectorAll(".mosaic-gallery-item");
+
+            const imageLinks = [
+                // Add the URLs of the corresponding webpages for each image in the slideshow
+                "https://example.com/page1",
+                "https://example.com/page2",
+                "https://example.com/page3",
+                "https://example.com/page4"
+            ];
+
+            let currentSlideIndex = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    if (i === index) {
+                        slide.style.opacity = "1";
+                        slide.classList.add("fade-in");
+                    } else {
+                        slide.style.opacity = "0";
+                        slide.classList.remove("fade-in");
+                    }
+                });
+
+                galleryItems.forEach((item, i) => {
+                    item.classList.toggle("highlighted", i === index);
+                });
+            }
+
+            function nextSlide() {
+                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                showSlide(currentSlideIndex);
+            }
+
+            galleryItems.forEach((item, i) => {
+                item.addEventListener("click", function () {
+                    currentSlideIndex = i;
+                    showSlide(currentSlideIndex);
+                    clearInterval(slideshowInterval);
+                });
+            });
+
+            slides.forEach((slide, i) => {
+                slide.addEventListener("animationend", function () {
+                    if (slide.classList.contains("fade-in")) {
+                        setTimeout(nextSlide, 5000);
+                    }
+                });
+
+                slide.addEventListener("click", function () {
+                    // Ensure the index is within the range of imageLinks array
+                    if (i >= 0 && i < imageLinks.length) {
+                        window.location.href = imageLinks[i];
+                    }
+                });
+            });
+
+            let slideshowInterval = setInterval(nextSlide, 5000);
+        });
+
+    </script>
+
+
+}
+

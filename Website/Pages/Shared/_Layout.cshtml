@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Website</title>
+    <link rel="stylesheet" href="~/css/_Layout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Index.css" asp-append-version="true" />
+    <script>
+        // JavaScript code to handle the logo and header behavior on scroll
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("header");
+            var logo = document.querySelector(".logo");
+            var leftLogo = document.querySelector(".left-logo");
+            var rightLogo = document.querySelector(".right-logo");
+            var headerTitle = document.querySelector(".header-title");
+            var mainTabs = document.querySelector(".main-tabs");
+            var miniTabs = document.querySelector(".mini-tabs");
+            if (window.pageYOffset > 0) {
+                header.classList.add("sticky");
+                logo.style.opacity = "0";
+                leftLogo.style.opacity = "1";
+                rightLogo.style.opacity = "1";
+                headerTitle.style.transform = "translateY(-540%)";
+                mainTabs.style.transform = "translateY(-700%)";
+                miniTabs.style.transform = "translateY(-700%)";
+            } else {
+                header.classList.remove("sticky");
+                logo.style.opacity = "1";
+                leftLogo.style.opacity = "0";
+                rightLogo.style.opacity = "0";
+                headerTitle.style.transform = "translateY(0)";
+                mainTabs.style.transform = "translateY(0)";
+                miniTabs.style.transform = "translateY(0)";
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="~/images/PalemeneLogo.png" alt="Logo">
+        </div>
+        <div class="left-logo">
+            <img src="~/images/GOS_Logo.png" alt="Left Logo">
+        </div>
+        <div class="right-logo">
+            <img src="~/images/PalemeneLogo.png" alt="Right Logo">
+        </div>
+        <h1 class="header-title">Parliament of Samoa</h1>
+        <nav>
+            <ul class="main-tabs">
+                <li><a href="/">Home</a></li>
+                <li><a href="/parliamentary-business">Parliamentary Business</a></li>
+                <li><a href="/ministers-and-members">Ministers and Members</a></li>
+                <li><a href="/news-and-events">News &amp; Events</a></li>
+                <li><a href="/about-parliament">About Parliament</a></li>
+                <li><a href="/visit-parliament">Visit Parliament</a></li>
+                <li class="dropdown-menu">
+                    <a href="#">More</a>
+                    <ul>
+                        <li><a href="/calendar">Calendar</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="content">
+            @RenderSection("content", required: false)
+        </div>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Parliament of Samoa - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

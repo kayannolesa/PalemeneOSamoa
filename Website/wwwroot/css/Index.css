@@ -1,0 +1,138 @@
+﻿/* Add custom CSS styles here */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.mosaic-gallery-container {
+    display: flex;
+    justify-content: flex-end; /* Adjust the justify-content property to move the container to the right */
+    margin-top: 220px; /* Adjust the top margin to push the mosaic gallery below the header */
+    padding: 20px;
+}
+
+.mosaic-gallery {
+    flex-basis: 50%; /* Adjust the width of the mosaic gallery */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-right: 10px; /* Adjust the right margin */
+}
+
+.mosaic-gallery-item {
+    flex-basis: calc(45% - 4px); /* Adjust the flex-basis value to control the width of the items */
+    margin: 1px; /* Adjust the margin value to control the space between items */
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer; /* Add a cursor pointer to indicate the item is clickable */
+}
+
+    .mosaic-gallery-item img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+
+.caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-95%, -50%);
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    font-family: "Arial", sans-serif; /* Replace with an attractive font family of your choice */
+    width: fit-content; /* Reduce the width size of the background to fit the content */
+    height: fit-content;
+    margin-top: 55px;
+}
+
+.slideshow .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(50px, -10px); /* Adjust the translation values for desired positioning */
+    padding: 2px 4px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-size: 22px; /* Adjust the font size for the slideshow caption */
+    font-weight: bold;
+    text-align: left; /* Align the text to the left */
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    font-family: "Arial", sans-serif; /* Replace with an attractive font family of your choice */
+    width: fit-content; /* Reduce the width size of the background to fit the content */
+    height: fit-content;
+    margin-top: 150px;
+}
+
+
+
+
+.mosaic-gallery-item:hover {
+    transform: scale(1.05);
+}
+
+    .mosaic-gallery-item:hover img {
+        transform: scale(1.1);
+    }
+
+    .mosaic-gallery-item:hover .caption {
+        opacity: 1;
+    }
+
+.slideshow-container {
+    flex-basis: 50%; /* Adjust the width of the slideshow container */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: -122px; /* Add a left margin to reduce the gap */
+    margin-top: -5px;
+}
+
+.slideshow {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 60%; /* Set the aspect ratio (height/width) for the slideshow */
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    object-fit: cover;
+    cursor: pointer; /* Add a cursor pointer to indicate the item is clickable */
+}
+
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Adjust the object-fit property to "contain" */
+    }
+
+.mosaic-gallery-item.highlighted {
+    filter: brightness(0.3); /* Darken the highlighted item */
+}
+
+.caption.highlighted {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.3); /* Set a background color for the highlighted caption */
+}
+
+
